@@ -52,14 +52,14 @@ def new_user():
         db.session.add(new_user)
         db.session.commit()
 
-        return redirect("/users")
+        return redirect("/users-list")
     
 @app.route('/users/<int:user_id>')
 def show_user(user_id):
     """Show a page with info on the user"""
 
     user = User.query.get_or_404(user_id)
-    return render_template('users-show.html', user=user)
+    return render_template('users/users-show.html', user=user)
 
     
 @app.route('/users/<int:user_id>/edit')
@@ -67,7 +67,7 @@ def edit_user(user_id):
     "Show a form for editing a user. "
 
     user = User.query.get_or_404(user_id)
-    return render_template('users-edit.html', user=user)
+    return render_template('users/users-edit.html', user=user)
 
 
 @app.route('users/<int:user_id>/edit', methods=["POST"])
